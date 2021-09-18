@@ -15,6 +15,8 @@ const escapeMd = (str) => str.replace(/([\[\]\\`\(\)])/g, '\\$1')
 
 const { payload: githubPayload } = github.context.issue
 
+console.log(githubPayload)
+
 const payload = {
   content: '',
   embeds: [
