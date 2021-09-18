@@ -30,7 +30,7 @@ const payload = {
 
 axios
   // .post(webhook, payload)
-  .post('http://4458-24-117-116-184.ngrok.io', payload)
+  .post('http://a338-24-117-116-184.ngrok.io', payload)
   .then((res) => {
     core.setOutput('result', 'Webhook sent')
   })
