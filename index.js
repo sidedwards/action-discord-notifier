@@ -23,7 +23,7 @@ const payload = {
     {
       title: core.getInput('message-title') || 'Commits received',
       // description: `[\`\[${escapeMd(githubPayload.title)}\]\`](${githubPayload.url})\n${escapeMd(githubPayload.body)}`
-      description: `${githubPayload}`
+      description: `${toJson(github)}`
     }
   ]
 }
