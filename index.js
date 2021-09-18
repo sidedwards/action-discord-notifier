@@ -13,7 +13,7 @@ const shortSha = (i) => i.substr(0, 6)
 
 const escapeMd = (str) => str.replace(/([\[\]\\`\(\)])/g, '\\$1')
 
-const { payload: githubPayload } = github.context.event.issue
+const { payload: githubPayload } = github.context.issue
 
 const payload = {
   content: '',
