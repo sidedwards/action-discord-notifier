@@ -23,8 +23,9 @@ const payload = {
         name: core.getInput('message-title') || 'Commits received',
         icon_url: `${githubPayload.organization.avatar_url}`
       },
-      title: escapeMd(`[${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}](${githubPayload.issue.html_url})`),
-      description: `${escapeMd(shortDes(githubPayload.issue.body))}`
+      title: escapeMd(`${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}`),
+      description: `${escapeMd(shortDes(githubPayload.issue.body))}`,
+      url: `${githubPayload.issue.html_url}`
     }
   ]
 }
