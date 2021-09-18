@@ -13,17 +13,15 @@ const shortSha = (i) => i.substr(0, 6)
 
 const escapeMd = (str) => str.replace(/([\[\]\\`\(\)])/g, '\\$1')
 
-const { payload: githubPayload } = github.context.issue
-
-console.log(githubPayload)
+const { payload: githubPayload } = github.context
 
 const payload = {
   content: '',
   embeds: [
     {
       title: core.getInput('message-title') || 'Commits received',
-      // description: `[\`\[${escapeMd(githubPayload.title)}\]\`](${githubPayload.url})\n${escapeMd(githubPayload.body)}`
-      description: `${JSON.stringify(github)}`
+      description: `[\`\[${escapeMd(githubPayload.issue.title)}\]\`](${githubPayload.issue.url})\n${escapeMd(githubPayload.issue.body)}`
+      // description: `${JSON.stringify(github)}`
     }
   ]
 }
