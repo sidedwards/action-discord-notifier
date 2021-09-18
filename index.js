@@ -3,7 +3,7 @@ const axios = require('axios')
 const core = require('@actions/core')
 const github = require('@actions/github')
 
-const webhook = core.getInput('webhook')
+const webhook = `${core.getInput('webhook')}/github`
 
 if (!/https:\/\/discord(app|)\.com\/api\/webhooks\/\d+?\/.+/i.exec(webhook)) {
   core.setFailed('The given discord webhook url is invalid. Please ensure you give a **full** url that start with "https://discordapp.com/api/webhooks"')
