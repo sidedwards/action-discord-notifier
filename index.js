@@ -9,8 +9,8 @@ if (!/https:\/\/discord(app|)\.com\/api\/webhooks\/\d+?\/.+/i.exec(webhook)) {
   core.setFailed('The given discord webhook url is invalid. Please ensure you give a **full** url that start with "https://discordapp.com/api/webhooks"')
 }
 
-const shortTitle = (i) => `${i.substr(0, 55)}...`
-const shortDes = (i) => `${i.substr(0, 250)}...`
+const shortTitle = (i) => (i.length > 55) ? `${i.substr(0, 55)}...` : i
+const shortDes = (i) => (i.length > 250) ? `${i.substr(0, 250)}...` : i
 const escapeMd = (str) => str.replace(/([\[\]\\`\(\)])/g, '\\$1')
 
 const { payload: githubPayload } = github.context
@@ -20,10 +20,15 @@ const payload = {
   embeds: [
     {
       author: {
-        name: core.getInput('message-title') || 'Commits received'
+        name: core.getInput('message-title') || 'Commits received',
+        icon_url: `${githubPayload.issue.user.avatar_url}`
       },
-      title: `[${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}](${githubPayload.issue.url})`,
-      description: `${escapeMd(shortDes(githubPayload.issue.body))}`
+      title: `[${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}](${escapeMd(githubPayload.issue.url)})`,
+      description: `${escapeMd(shortDes(githubPayload.issue.body))}`,
+      footer: {
+        text: `${escapeMd(githubPayload.organization.description)}`,
+        icon_url: `${githubPayload.organization.avatar_url}`
+      }
     }
   ]
 }
