@@ -21,14 +21,10 @@ const payload = {
     {
       author: {
         name: core.getInput('message-title') || 'Commits received',
-        icon_url: `${githubPayload.issue.user.avatar_url}`
-      },
-      title: `\[${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}\](${escapeMd(githubPayload.issue.html_url)})`,
-      description: `${escapeMd(shortDes(githubPayload.issue.body))}`,
-      footer: {
-        text: `${escapeMd(githubPayload.organization.description)}`,
         icon_url: `${githubPayload.organization.avatar_url}`
-      }
+      },
+      title: `\`\[${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}\]\`(${escapeMd(githubPayload.issue.html_url)})`,
+      description: `${escapeMd(shortDes(githubPayload.issue.body))}`
     }
   ]
 }
