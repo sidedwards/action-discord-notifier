@@ -9,8 +9,6 @@ if (!/https:\/\/discord(app|)\.com\/api\/webhooks\/\d+?\/.+/i.exec(webhook)) {
   core.setFailed('The given discord webhook url is invalid. Please ensure you give a **full** url that start with "https://discordapp.com/api/webhooks"')
 }
 
-const shortSha = (i) => i.substr(0, 6)
-
 const escapeMd = (str) => str.replace(/([\[\]\\`\(\)])/g, '\\$1')
 
 const { payload: githubPayload } = github.context
@@ -21,14 +19,13 @@ const payload = {
     {
       title: core.getInput('message-title') || 'Commits received',
       description: `[\`\[${escapeMd(githubPayload.issue.title)}\]\`](${githubPayload.issue.url})\n${escapeMd(githubPayload.issue.body)}`
-      // description: `${JSON.stringify(github)}`
     }
   ]
 }
 
 axios
   // .post(webhook, payload)
-  .post('http://be6d-24-117-116-184.ngrok.io/github', payload)
+  .post(webhook, payload)
   .then((res) => {
     core.setOutput('result', 'Webhook sent')
   })
