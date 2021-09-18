@@ -19,8 +19,10 @@ const payload = {
   content: '',
   embeds: [
     {
-      // author: core.getInput('message-title') || 'Commits received',
-      title: `[${escapeMd(shortTitle(githubPayload.issue.title))} · Issue #${githubPayload.issue.number}](${githubPayload.issue.url})`,
+      author: {
+        name: core.getInput('message-title') || 'Commits received'
+      },
+      title: `[${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}](${githubPayload.issue.url})`,
       description: `${escapeMd(shortDes(githubPayload.issue.body))}`
     }
   ]
