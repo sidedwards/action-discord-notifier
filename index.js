@@ -20,8 +20,8 @@ const payload = {
   embeds: [
     {
       author: {
-        name: core.getInput('message-title') || 'Commits received',
-        icon_url: `${githubPayload.organization.avatar_url}`
+        name: `${githubPayload.user.login}`,
+        icon_url: `${githubPayload.user.avatar_url}`,
       },
       title: escapeMd(`${shortTitle(githubPayload.issue.title)} · Issue #${githubPayload.issue.number}`),
       description: `${escapeMd(shortDes(githubPayload.issue.body))}`,
