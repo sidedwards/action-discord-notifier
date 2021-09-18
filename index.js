@@ -22,7 +22,8 @@ const payload = {
   embeds: [
     {
       title: core.getInput('message-title') || 'Commits received',
-      description: `[\`\[${escapeMd(githubPayload.title)}\]\`](${githubPayload.url})\n${escapeMd(githubPayload.body)}`
+      // description: `[\`\[${escapeMd(githubPayload.title)}\]\`](${githubPayload.url})\n${escapeMd(githubPayload.body)}`
+      description: `${githubPayload}`
     }
   ]
 }
